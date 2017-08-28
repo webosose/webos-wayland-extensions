@@ -131,6 +131,8 @@
             <entry name="local_down" value="524288"/>
             <entry name="local_ok" value="1048576"/>
             <entry name="remote_magnifier_group" value="2097152"/>
+            <entry name="minimal_playback_group" value="4194304"/>
+            <entry name="guide" value="8388608"/>
             <entry name="default" value="0xFFFFFFF8"/>
         </enum>
 
