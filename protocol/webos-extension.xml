@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="webos-extension">
+
+    <copyright>
+      Copyright (c) 2013 LG Electronics, Inc.
+
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+    </copyright>
+
+
+    <interface name="wl_webos_xinput" version="1">
+        <description summary="interface for adding extended inputs">
+            An extended input is something other than keyboard, mouse
+            or remote.
+        </description>
+
+        <enum name="keysym_type">
+            <description summary="The type for the symbol">
+                Describes the type of the symbol. The compositor will
+                do the necessary conversion before sending it the the
+                current fullscreen surface
+            </description>
+            <entry name="qt" value="1"/>
+            <entry name="native" value="2"/>
+        </enum>
+
+        <enum name="event_type">
+            <description summary="The type of the event">
+                Describes the type of the event. "press_and_release"
+                means the compositor will send a released event after
+                a pressed event automatically.
+            </description>
+            <entry name="press_and_release" value="0"/>
+            <entry name="press" value="1"/>
+            <entry name="release" value="2"/>
+        </enum>
+
+        <request name="invoke_action">
+            <description summary="Invokes an action">
+                The keysym is value is described by the type argument
+            </description>
+            <arg name="keysym" type="uint"/>
+            <arg name="symbol_type" type="uint"/>
+            <arg name="event_type" type="uint"/>
+        </request>
+
+        <event name="activation_request">
+            <description summary="Requests activation">
+                Requests that the method matching the argument string
+                is activated. The method is responsible for replying
+                back with the activated request. Currently supported
+                methods are: "voice", "screen_remote", "hot_key_XXXX"
+
+                NOTE: All the registered methods will get the activation
+                request and thus the client is responsible for performing
+                filtering and activating itself when it knows that it can
+                handle the type.
+            </description>
+
+            <arg name="type" type="string"/>
+        </event>
+
+        <event name="deactivated">
+        </event>
+
+        <request name="activated">
+            <description summary="This input has been activated"/>
+            <arg name="type" type="string"/>
+        </request>
+
+        <request name="deactivated">
+            <description summary="This input has been deactivated"/>
+        </request>
+
+    </interface>
+
+    <interface name="wl_webos_xinput_extension" version="1">
+
+        <request name="register_input">
+            <arg name="id" type="new_id" interface="wl_webos_xinput"/>
+        </request>
+
+    </interface>
+</protocol>
