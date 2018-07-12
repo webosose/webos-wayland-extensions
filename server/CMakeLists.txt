@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2019 LG Electronics, Inc.
+# Copyright (c) 2013-2020 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/input-method.xml SOURCES in
 wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-input-manager.xml SOURCES webos-input-manager)
 wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-extension.xml SOURCES webos-extension)
 wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-foreign.xml SOURCES webos-foreign)
+wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-tablet.xml SOURCES webos-tablet)
 
 webos_add_linker_options(ALL --no-undefined)
 
