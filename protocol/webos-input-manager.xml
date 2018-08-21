@@ -30,6 +30,13 @@
             <arg name="webos_seat" type="object" interface="wl_webos_seat" allow-null="true" summary="webos_seat cursor visibility changed, if this value is Null All cursors are hidden"/>
         </event>
 
+        <request name="set_cursor_visibility">
+            <description summary="Set cursor visibility">
+                set cursor visibility
+            </description>
+            <arg name="visibility" type="uint" summary="boolean for the cursor visibility"/>
+        </request>
+
         <request name="get_webos_seat">
             <description summary="Gets the webos seat">
                 return webos_seat associated with the seat
@@ -128,4 +135,3 @@
     </interface>
 
 </protocol>
-
