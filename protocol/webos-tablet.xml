@@ -29,13 +29,13 @@
     </enum>
 
     <event name="tablet_event">
-      <arg name="uniqueId" type="int" />
+      <arg name="uniqueId" type="array" />
       <arg name="pointerType" type="int" />
       <arg name="down" type="int" />
       <arg name="globalX" type="fixed" />
       <arg name="globalY" type="fixed" />
-      <arg name="xTilt" type="uint" />
-      <arg name="yTilt" type="uint" />
+      <arg name="xTilt" type="int" />
+      <arg name="yTilt" type="int" />
       <arg name="pressure" type="fixed" />
       <arg name="rotation" type="fixed" />
     </event>
