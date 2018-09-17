@@ -309,6 +309,22 @@
       <arg name="width" type="uint"/>
       <arg name="height" type="uint"/>
     </event>
+
+    <request name="set_input_panel_rect">
+      <description summary="set rect of the input panel">
+        Request the geometry of the input panel to change.
+      </description>
+      <arg name="x" type="int"/>
+      <arg name="y" type="int"/>
+      <arg name="width" type="uint"/>
+      <arg name="height" type="uint"/>
+    </request>
+
+    <request name="reset_input_panel_rect">
+      <description summary="reset rect of the input panel">
+        Reset the geometry of the input panel requested.
+      </description>
+    </request>
   </interface>
 
   <interface name="text_model_factory" version="1">
