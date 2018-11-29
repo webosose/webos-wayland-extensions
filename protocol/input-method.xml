@@ -170,6 +170,18 @@
       </description>
       <arg name="context" type="object" interface="input_method_context"/>
     </event>
+    <event name="show_input_panel">
+      <description summary="show input panel event">
+      The text model corresponding that the input panel sets showing
+      </description>
+      <arg name="context" type="object" interface="input_method_context"/>
+    </event>
+    <event name="hide_input_panel">
+      <description summary="hide input panel event">
+      The text model corresponding that the input panel sets hiding
+      </description>
+      <arg name="context" type="object" interface="input_method_context"/>
+    </event>
   </interface>
 
   <interface name="input_panel" version="1">
