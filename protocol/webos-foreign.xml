@@ -129,6 +129,7 @@
         Requests a punch-through on the exporetd window associated with
         this import object.
       </description>
+      <arg name="context_id" type="string" summary="context id for requesting to external entity"/>
     </request>
 
     <request name="detach_punchthrough">
