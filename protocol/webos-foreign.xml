@@ -155,6 +155,15 @@
       <arg name="surface" type="object" interface="wl_surface"/>
     </request>
 
+    <request name="set_z_index">
+      <description summary="set the z-index for webos_imported">
+        Set the z index for webos_imported. The compositor will move the surface,
+        that is attached to webos_imported, to this layer. If no surface is attached to
+        webos_imported, nothing will happen.
+      </description>
+      <arg name="z_index" type="int"/>
+    </request>
+
     <event name="destination_region_changed">
       <description summary="destination region changed">
         Notifies the change of the destination region of associated exported window.
