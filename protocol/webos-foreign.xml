@@ -163,6 +163,34 @@
       <arg name="height" type="uint" summary="destination height of exported window"/>
     </event>
 
+    <event name="punchthrough_attached">
+      <description summary="punchthrough attached">
+        Notifies that a punchthrough is attached to webos_imported.
+      </description>
+      <arg name="context_id" type="string"/>
+    </event>
+
+    <event name="punchthrough_detached">
+      <description summary="punchthrough detached">
+        Notifies that a punchthrough is detached from webos_imported.
+      </description>
+      <arg name="context_id" type="string"/>
+    </event>
+
+    <event name="surface_attached">
+      <description summary="surface attached">
+        Notifies that a surface is attached to webos_imported.
+      </description>
+      <arg name="surface" type="object" interface="wl_surface"/>
+    </event>
+
+    <event name="surface_detached">
+      <description summary="surface detached">
+        Notifies that a surface is detached from webos_imported.
+      </description>
+      <arg name="surface" type="object" interface="wl_surface"/>
+    </event>
+
   </interface>
 
 </protocol>
