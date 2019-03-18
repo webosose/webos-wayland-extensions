@@ -168,6 +168,18 @@
       <arg name="layer" type="string"/>
     </request>
 
+    <request name="commit_key_index">
+      <description summary="apply the key index order of layers to receive keyboard events">
+        Using "commit_key_index", the compositor will send key events in key index order
+        regardless of z-order in the surface group.
+        Key index set to each layer becomes effective after "commit_key_index" request.
+        Parameter 'commit' should be 1 when applying the key index order.
+        Set parameter 'commit' to 0 not to use the key index order.
+        If anonymous layer is allowed, the key index order doesn't work.
+      </description>
+      <arg name="commit" type="uint" summary="a boolean to indicate to apply key order of layers"/>
+    </request>
+
   </interface>
 
   <interface name="wl_webos_surface_group_layer" version="1">
@@ -182,6 +194,17 @@
         layer nothing will happen
       </description>
       <arg name="z_index" type="int"/>
+    </request>
+
+    <request name="set_key_index">
+      <description summary="update the key index">
+        Sets the key index for this layer. The compositor will send key events
+        to this layer accordingly after "commit_key_index" request.
+        If no surface is attached to this layer nothing will happen.
+        Key index should be neither redundant nor 0 (0 is onwner's key index).
+        The larger the key index, the faster the layer receives the key event.
+      </description>
+      <arg name="key_index" type="int"/>
     </request>
 
     <request name="destroy" type="destructor">
