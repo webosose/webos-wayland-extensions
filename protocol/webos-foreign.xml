@@ -43,6 +43,7 @@
       </description>
       <entry name="video_object" value="0" summary="exported window for video object"/>
       <entry name="subtitle_object" value="1" summary="exported window for subtitle object"/>
+      <entry name="transparent_object" value="2" summary="exported window for transparent object that does not need to punch through other windows"/>
     </enum>
 
     <request name="export_element">
