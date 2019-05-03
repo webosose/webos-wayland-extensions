@@ -85,6 +85,15 @@
       <arg name="destination_region" type="object" interface="wl_region" summary="destination region of exported window"/>
     </request>
 
+    <request name="set_crop_region">
+      <description summary="set region to be cropped">
+        Sets a region to be cropped.
+      </description>
+      <arg name="original_input" type="object" interface="wl_region" summary="input resolution of original streaming"/>
+      <arg name="source_region" type="object" interface="wl_region" summary="source region of exported window"/>
+      <arg name="destination_region" type="object" interface="wl_region" summary="destination region of exported window"/>
+    </request>
+
     <event name="window_id_assigned">
       <description summary="window is associated with this wl_webos_exported">
         Notifies window_id of the exported window.
