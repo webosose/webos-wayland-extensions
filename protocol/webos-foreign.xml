@@ -94,6 +94,14 @@
       <arg name="destination_region" type="object" interface="wl_region" summary="destination region of exported window"/>
     </request>
 
+    <request name="set_property">
+      <description summary="set a property">
+        Sets a property for this webos_exported. The property is given by a string pair (name, value).
+      </description>
+      <arg name="name" type="string"/>
+      <arg name="value" type="string"/>
+    </request>
+
     <event name="window_id_assigned">
       <description summary="window is associated with this wl_webos_exported">
         Notifies window_id of the exported window.
