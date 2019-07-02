@@ -147,7 +147,7 @@
     </event>
   </interface>
 
-  <interface name="input_method" version="1">
+  <interface name="input_method" version="2">
     <description summary="input method">
       An input method object is responsible to compose text in response to
       input from hardware or virtual keyboards. There is one input method
@@ -182,6 +182,9 @@
       </description>
       <arg name="context" type="object" interface="input_method_context"/>
     </event>
+    <request name="set_display_id">
+      <arg name="id" type="uint" summary="display id"/>
+    </request>
   </interface>
 
   <interface name="input_panel" version="1">
