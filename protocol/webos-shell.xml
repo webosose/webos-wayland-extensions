@@ -181,6 +181,7 @@
       <entry name="guide" value="8388608"/>
       <entry name="teletext_active_group" value="16777216"/>
       <entry name="data" value="33554432"/>
+      <entry name="info" value="67108864"/>
       <entry name="default" value="0xFFFFFFF8"/>
     </enum>
 
