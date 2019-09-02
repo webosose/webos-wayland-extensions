@@ -2,7 +2,7 @@
 <protocol name="webos_shell">
 
     <copyright>
-      Copyright (c) 2013-2015 LG Electronics, Inc.
+      Copyright (c) 2013-2019 LG Electronics, Inc.
 
       Licensed under the Apache License, Version 2.0 (the "License");
       you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@
                 to place the surface. The compositor will do its best to
                 place it there, however this is not guaranteed. Currently
                 The location hint is only applied to _WEBOS_WINDOW_TYPE_POPUP
-                surfaces.
+                and _WEBOS_WINDOW_TYPE_SYSTEM_UI surfaces.
             </description>
             <arg name="hint" type="uint"/>
         </request>
