@@ -3,6 +3,7 @@
 
   <copyright>
     Copyright © 2012 Intel Corporation
+    Copyright © 2013-2019 LG Electronics, Inc.
 
     Permission to use, copy, modify, distribute, and sell this
     software and its documentation for any purpose is hereby granted
@@ -37,6 +38,7 @@
       removes the need for applications to directly process hardware key events
       and compose text out of them.
     </description>
+
     <request name="set_surrounding_text">
       <description summary="sets the surrounding text">
         Sets the plain surrounding text around the input position. Cursor is the
@@ -48,6 +50,7 @@
       <arg name="cursor" type="uint"/>
       <arg name="anchor" type="uint"/>
     </request>
+
     <request name="activate">
       <description summary="request activation">
         Requests the model to be activated (typically when the text entry gets
@@ -60,6 +63,7 @@
       <arg name="seat" type="object" interface="wl_seat"/>
       <arg name="surface" type="object" interface="wl_surface"/>
     </request>
+
     <request name="deactivate">
       <description summary="request deactivation">
         Requests the model to be deactivated (typically when the text entry
@@ -68,23 +72,33 @@
       </description>
       <arg name="seat" type="object" interface="wl_seat"/>
     </request>
+
     <request name="reset">
       <description summary="reset">
         Should be called by an editor widget when the input state should
-        be reseted, for example after the text was changed outside of the
+        be reset, for example after the text was changed outside of the
         normal input method flow.
       </description>
       <arg name="serial" type="uint"/>
     </request>
+
     <request name="set_cursor_rectangle">
+      <description summary="set_cursor_rectangle">
+        Sets a rectangle for the cursor with x, y, width and height in surface
+        local coordinates.
+
+        Not implemented.
+      </description>
       <arg name="x" type="int"/>
       <arg name="y" type="int"/>
       <arg name="width" type="int"/>
       <arg name="height" type="int"/>
     </request>
+
     <enum name="content_hint">
       <description summary="content hint">
-        Content hint is a bitmask to allow to modify the behavior of the text input
+        Content hint is a bitmask to allow to modify the behavior of the text
+        input.
       </description>
       <entry name="none" value="0x0" summary="no special behaviour"/>
       <entry name="default" value="0x7" summary="auto completion, correction and capitalization"/>
@@ -100,12 +114,13 @@
       <entry name="latin" value="0x100" summary="just latin characters should be entered"/>
       <entry name="multiline" value="0x200" summary="the text input is multiline"/>
     </enum>
+
     <enum name="content_purpose">
       <description summary="content purpose">
         The content purpose allows to specify the primary purpose of a text input.
 
-	This allows an input method to show special purpose input panels with extra 
-	characters or to disallow some characters.
+        This allows an input method to show special purpose input panels with extra
+        characters or to disallow some characters.
       </description>
       <entry name="normal" value="0" summary="default input, allowing all characters"/>
       <entry name="alpha" value="1" summary="allow only alphabetic characters"/>
@@ -121,6 +136,7 @@
       <entry name="datetime" value="11" summary="input a date and time"/>
       <entry name="terminal" value="12" summary="input for a terminal"/>
     </enum>
+
     <request name="set_content_type">
       <description summary="set content purpose and hint">
         Sets the content purpose and content hint. While the purpose is the
@@ -137,8 +153,9 @@
 
     <enum name="enter_key_type">
       <description summary="enter key type">
-          The enter key type can be used to alter the appearance of the Enter key on an on screen keyboard.
-    </description>
+        The enter key type can be used to alter the appearance of the enter key
+        on an input panel (virtual keyboard).
+      </description>
       <entry name="default" value="0" summary="the default Enter key"/>
       <entry name="return" value="1" summary="show a Return button that inserts a new line"/>
       <entry name="done" value="2" summary="show a Done button"/>
@@ -148,38 +165,59 @@
       <entry name="next" value="6" summary="show a Next button"/>
       <entry name="previous" value="7" summary="show a Previous button"/>
     </enum>
+
     <request name="set_enter_key_type">
       <description summary="set type of enter key">
-        Set the type of enter.
+        Sets the type of the enter key on an input panel (virtual keyboard).
       </description>
       <arg name="enter_key_type" type="uint"/>
     </request>
 
     <request name="invoke_action">
+      <description summary="invoke action">
+        Invokes a button action on a given position.
+
+        Not implemented.
+      </description>
       <arg name="button" type="uint"/>
       <arg name="index" type="uint"/>
     </request>
+
     <request name="commit">
+      <description summary="commit state">
+        Requests to apply state changes sent so far.
+      </description>
     </request>
+
     <request name="set_max_text_length">
+      <description summary="set max length of input field">
+        Sets the maximum length of an input field.
+      </description>
       <arg name="length" type="uint"/>
     </request>
+
     <request name="set_platform_data">
+      <description summary="set platform specific data">
+        Sets the platform specific data (text).
+      </description>
       <arg name="text" type="string"/>
     </request>
+
     <request name="show_input_panel">
       <description summary="show input panels">
         Requests input panels (virtual keyboard) to show.
       </description>
     </request>
+
     <request name="hide_input_panel">
       <description summary="hide input panels">
         Requests input panels (virtual keyboard) to hide.
       </description>
     </request>
+
     <event name="commit_string">
-      <description summary="commit">
-        Notify when text should be inserted into the editor widget. The text
+      <description summary="text to commit">
+        Notifies when text should be inserted into the editor widget. The text
         to commit could be either just a single character after a key press
         or the result of some composing (pre-edit). It also sets the new
         cursor position (as byte index) relative to the inserted text.
@@ -189,9 +227,10 @@
       <arg name="serial" type="uint"/>
       <arg name="text" type="string"/>
     </event>
+
     <event name="preedit_string">
-      <description summary="pre-edit">
-        Notify when a new composing text (pre-edit) should be set around the
+      <description summary="pre-edit text">
+        Notifies when a new composing text (pre-edit) should be set around the
         current cursor position. Any previously set composing text should
         be removed.
 
@@ -202,9 +241,10 @@
       <arg name="text" type="string"/>
       <arg name="commit" type="string"/>
     </event>
+
     <event name="delete_surrounding_text">
       <description summary="delete surrounding text">
-        Notify when the text around the current cursor position should be
+        Notifies when the text around the current cursor position should be
         deleted. Index is relative to the current cursor (as byte index).
         Length is the length of deleted text (as bytes).
       </description>
@@ -212,16 +252,23 @@
       <arg name="index" type="int"/>
       <arg name="length" type="uint"/>
     </event>
+
     <event name="cursor_position">
       <description summary="set cursor to new position">
-        Notify when the cursor or anchor position should be modified. It
+        Notifies when the cursor or anchor position should be modified. It
         should take effect after the next commit_string event.
+
+        Not implemented.
       </description>
       <arg name="serial" type="uint"/>
       <arg name="index" type="int"/>
       <arg name="anchor" type="int"/>
     </event>
+
     <enum name="preedit_style">
+      <description summary="pre-edit style">
+        The style for a composing text text.
+      </description>
       <entry name="default" value="1"/>
       <entry name="active" value="2"/>
       <entry name="inactive" value="3"/>
@@ -230,6 +277,7 @@
       <entry name="selection" value="6"/>
       <entry name="incorrect" value="7"/>
     </enum>
+
     <event name="preedit_styling">
       <description summary="pre-edit styling">
         Sets styling information on composing text. The style is applied for
@@ -245,6 +293,7 @@
       <arg name="length" type="uint"/>
       <arg name="style" type="uint"/>
     </event>
+
     <event name="preedit_cursor">
       <description summary="pre-edit cursor">
         Sets the cursor position inside the composing text (as byte index)
@@ -256,19 +305,21 @@
       <arg name="serial" type="uint"/>
       <arg name="index" type="int"/>
     </event>
+
     <event name="modifiers_map">
       <description summary="modifiers map">
-        Transfer an array of 0-terminated modifiers names. The position in
+        Transfers an array of 0-terminated modifiers names. The position in
         the array is the index of the modifier as used in the modifiers
         bitmask in the keysym event.
       </description>
       <arg name="map" type="array"/>
     </event>
+
     <event name="keysym">
       <description summary="keysym">
-        Notify when a key event was sent. Key events should not be used
+        Notifies when a key event was sent. Key events should not be used
         for normal text input operations, which should be done with
-        commit_string, delete_surrounfing_text, etc. The key event follows
+        commit_string, delete_surrounding_text, etc. The key event follows
         the wl_keyboard key event convention. State is a XKB keysym, state a
         wl_keyboard key_state. Modifiers are a mask for effective modifiers
         (where the modfier indices are set by the modifiers_map event)
@@ -279,30 +330,35 @@
       <arg name="state" type="uint"/>
       <arg name="modifiers" type="uint"/>
     </event>
+
     <event name="enter">
       <description summary="enter event">
-        Notify the model when it is activated. Typically in response to an
-        activate request.
+        Notifies the model when it is activated on a given surface. Typically in
+        response to an activate request.
       </description>
       <arg name="surface" type="object" interface="wl_surface"/>
     </event>
+
     <event name="leave">
       <description summary="leave event">
-        Notify the model when it is deactivated. Either in response to a
+        Notifies the model when it is deactivated. Either in response to a
         deactivate request or when the assigned surface lost focus or was
         destroyed.
       </description>
     </event>
+
     <event name="input_panel_state">
       <description summary="state of the input panel">
-        Notify when the visibility state of the input panel changed.
+        Notifies when the visibility state of the input panel changed. The state
+        is either 0 (hidden) or 1 (shown).
       </description>
       <arg name="state" type="uint"/>
     </event>
 
     <event name="input_panel_rect">
       <description summary="rect of the input panel">
-        Notify when the geometry of the input panel changes.
+        Notifies when the geometry of the input panel changes in surface local
+        coordinates.
       </description>
       <arg name="x" type="int"/>
       <arg name="y" type="int"/>
@@ -312,7 +368,8 @@
 
     <request name="set_input_panel_rect">
       <description summary="set rect of the input panel">
-        Request the geometry of the input panel to change.
+        Requests the geometry of the input panel to change. The geometry should
+        be in surface local coordinates.
       </description>
       <arg name="x" type="int"/>
       <arg name="y" type="int"/>
@@ -322,20 +379,24 @@
 
     <request name="reset_input_panel_rect">
       <description summary="reset rect of the input panel">
-        Reset the geometry of the input panel requested.
+        Resets the geometry of the input panel requested.
       </description>
     </request>
+
   </interface>
 
   <interface name="text_model_factory" version="1">
     <description summary="text model factory">
       A factory for text models. This object is a singleton global.
     </description>
+
     <request name="create_text_model">
       <description summary="create text model">
         Creates a new text model object.
       </description>
       <arg name="id" type="new_id" interface="text_model"/>
     </request>
+
   </interface>
+
 </protocol>
