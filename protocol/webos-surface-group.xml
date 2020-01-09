@@ -2,7 +2,7 @@
 <protocol name="webos_surface_group">
 
   <copyright>
-    Copyright (c) 2014-2019 LG Electronics, Inc.
+    Copyright (c) 2014-2020 LG Electronics, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -136,6 +136,23 @@
       <arg name="surface" type="object" interface="wl_surface"/>
     </request>
 
+    <event name="owner_destroyed">
+      <description summary="sent to clients attached to this group">
+        If the owner crashes or normally destroys this group the attached
+        client will receive this notification.
+
+        Since compositor does not know what to do with client surface still
+        attached to this group it will not show them. A well behaving client
+        will 'detach' from this group and release its assosicated resource
+      </description>
+    </event>
+
+    <request name="destroy" type="destructor">
+      <description summary="destroy object">
+        Destroys the surface group object.
+      </description>
+    </request>
+
     <request name="focus_owner">
       <description summary="transfers keyboard focus to group owner surface">
         Using "focus_owner" a surface-group-client or a surface-group-owner can transfer
@@ -150,23 +167,6 @@
       </description>
       <arg name="layer" type="string"/>
     </request>
-
-    <request name="destroy" type="destructor">
-      <description summary="destroy object">
-        Destroys the surface group object.
-      </description>
-    </request>
-
-    <event name="owner_destroyed">
-      <description summary="sent to clients attached to this group">
-        If the owner crashes or normally destroys this group the attached
-        client will receive this notification.
-
-        Since compositor does not know what to do with client surface still
-        attached to this group it will not show them. A well behaving client
-        will 'detach' from this group and release its assosicated resource
-      </description>
-    </event>
 
   </interface>
 

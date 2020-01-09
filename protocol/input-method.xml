@@ -2,7 +2,7 @@
 <protocol name="input_method">
   <copyright>
     Copyright © 2012 Intel Corporation
-    Copyright © 2013-2019 LG Electronics, Inc.
+    Copyright © 2013-2020 LG Electronics, Inc.
 
     Permission to use, copy, modify, distribute, and sell this
     software and its documentation for any purpose is hereby granted
@@ -188,13 +188,6 @@
       <arg name="purpose" type="uint"/>
     </event>
 
-    <event name="enter_key_type">
-      <description summary="set type of enter key">
-        Sets the type of the enter key on an input panel (virtual keyboard).
-      </description>
-      <arg name="enter_key_type" type="uint"/>
-    </event>
-
     <event name="invoke_action">
       <description summary="invoke action">
         Invokes a button action on a given position.
@@ -223,6 +216,13 @@
         Notifies the platform specific data (text).
       </description>
       <arg name="text" type="string"/>
+    </event>
+
+    <event name="enter_key_type">
+      <description summary="set type of enter key">
+        Sets the type of the enter key on an input panel (virtual keyboard).
+      </description>
+      <arg name="enter_key_type" type="uint"/>
     </event>
 
   </interface>
@@ -267,7 +267,7 @@
       <arg name="context" type="object" interface="input_method_context"/>
     </event>
 
-    <request name="set_display_id">
+    <request name="set_display_id" since="2">
       <description summary="set display id">
         Sets the id of the display corresponding.
       </description>

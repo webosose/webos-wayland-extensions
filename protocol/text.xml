@@ -3,7 +3,7 @@
 
   <copyright>
     Copyright © 2012 Intel Corporation
-    Copyright © 2013-2019 LG Electronics, Inc.
+    Copyright © 2013-2020 LG Electronics, Inc.
 
     Permission to use, copy, modify, distribute, and sell this
     software and its documentation for any purpose is hereby granted
@@ -166,13 +166,6 @@
       <entry name="previous" value="7" summary="show a Previous button"/>
     </enum>
 
-    <request name="set_enter_key_type">
-      <description summary="set type of enter key">
-        Sets the type of the enter key on an input panel (virtual keyboard).
-      </description>
-      <arg name="enter_key_type" type="uint"/>
-    </request>
-
     <request name="invoke_action">
       <description summary="invoke action">
         Invokes a button action on a given position.
@@ -186,32 +179,6 @@
     <request name="commit">
       <description summary="commit state">
         Requests to apply state changes sent so far.
-      </description>
-    </request>
-
-    <request name="set_max_text_length">
-      <description summary="set max length of input field">
-        Sets the maximum length of an input field.
-      </description>
-      <arg name="length" type="uint"/>
-    </request>
-
-    <request name="set_platform_data">
-      <description summary="set platform specific data">
-        Sets the platform specific data (text).
-      </description>
-      <arg name="text" type="string"/>
-    </request>
-
-    <request name="show_input_panel">
-      <description summary="show input panels">
-        Requests input panels (virtual keyboard) to show.
-      </description>
-    </request>
-
-    <request name="hide_input_panel">
-      <description summary="hide input panels">
-        Requests input panels (virtual keyboard) to hide.
       </description>
     </request>
 
@@ -355,6 +322,18 @@
       <arg name="state" type="uint"/>
     </event>
 
+    <request name="show_input_panel">
+      <description summary="show input panels">
+        Requests input panels (virtual keyboard) to show.
+      </description>
+    </request>
+
+    <request name="hide_input_panel">
+      <description summary="hide input panels">
+        Requests input panels (virtual keyboard) to hide.
+      </description>
+    </request>
+
     <event name="input_panel_rect">
       <description summary="rect of the input panel">
         Notifies when the geometry of the input panel changes in surface local
@@ -365,6 +344,27 @@
       <arg name="width" type="uint"/>
       <arg name="height" type="uint"/>
     </event>
+
+    <request name="set_max_text_length">
+      <description summary="set max length of input field">
+        Sets the maximum length of an input field.
+      </description>
+      <arg name="length" type="uint"/>
+    </request>
+
+    <request name="set_platform_data">
+      <description summary="set platform specific data">
+        Sets the platform specific data (text).
+      </description>
+      <arg name="text" type="string"/>
+    </request>
+
+    <request name="set_enter_key_type">
+      <description summary="set type of enter key">
+        Sets the type of the enter key on an input panel (virtual keyboard).
+      </description>
+      <arg name="enter_key_type" type="uint"/>
+    </request>
 
     <request name="set_input_panel_rect">
       <description summary="set rect of the input panel">

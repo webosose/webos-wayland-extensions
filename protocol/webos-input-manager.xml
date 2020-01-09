@@ -2,7 +2,7 @@
 <protocol name="webos_input_manager">
 
   <copyright>
-    Copyright (c) 2014-2019 LG Electronics, Inc.
+    Copyright (c) 2014-2020 LG Electronics, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -25,6 +25,14 @@
       get_webos_seat(seat).
     </description>
 
+    <request name="get_webos_seat">
+      <description summary="get webos seat">
+        Returns a webos_seat associated with the seat.
+      </description>
+      <arg name="id" type="new_id" interface="wl_webos_seat"/>
+      <arg name="seat" type="object" interface="wl_seat"/>
+    </request>
+
     <event name="cursor_visibility">
       <description summary="current cursor visibility">
         If the current cursor visibility is chagned, notify it.
@@ -38,14 +46,6 @@
         Sets the cursor visibility.
       </description>
       <arg name="visibility" type="uint" summary="boolean for the cursor visibility"/>
-    </request>
-
-    <request name="get_webos_seat">
-      <description summary="get webos seat">
-        Returns a webos_seat associated with the seat.
-      </description>
-      <arg name="id" type="new_id" interface="wl_webos_seat"/>
-      <arg name="seat" type="object" interface="wl_seat"/>
     </request>
 
   </interface>
