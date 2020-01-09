@@ -67,7 +67,7 @@
 
   </interface>
 
-  <interface name="wl_webos_exported" version="1">
+  <interface name="wl_webos_exported" version="2">
     <description summary="interface for handling exported window">
       This interface defines operations and notifications on an exported window.
     </description>
@@ -86,23 +86,6 @@
       <arg name="destination_region" type="object" interface="wl_region" summary="destination region of exported window"/>
     </request>
 
-    <request name="set_crop_region">
-      <description summary="set region to be cropped">
-        Sets a region to be cropped.
-      </description>
-      <arg name="original_input" type="object" interface="wl_region" summary="input resolution of original streaming"/>
-      <arg name="source_region" type="object" interface="wl_region" summary="source region of exported window"/>
-      <arg name="destination_region" type="object" interface="wl_region" summary="destination region of exported window"/>
-    </request>
-
-    <request name="set_property">
-      <description summary="set a property">
-        Sets a property for this webos_exported. The property is given by a string pair (name, value).
-      </description>
-      <arg name="name" type="string"/>
-      <arg name="value" type="string"/>
-    </request>
-
     <event name="window_id_assigned">
       <description summary="window is associated with this wl_webos_exported">
         Notifies window_id of the exported window.
@@ -111,9 +94,26 @@
       <arg name="exported_type" type="uint"/>
     </event>
 
+    <request name="set_crop_region" since="2">
+      <description summary="set region to be cropped">
+        Sets a region to be cropped.
+      </description>
+      <arg name="original_input" type="object" interface="wl_region" summary="input resolution of original streaming"/>
+      <arg name="source_region" type="object" interface="wl_region" summary="source region of exported window"/>
+      <arg name="destination_region" type="object" interface="wl_region" summary="destination region of exported window"/>
+    </request>
+
+    <request name="set_property" since="2">
+      <description summary="set a property">
+        Sets a property for this webos_exported. The property is given by a string pair (name, value).
+      </description>
+      <arg name="name" type="string"/>
+      <arg name="value" type="string"/>
+    </request>
+
   </interface>
 
-  <interface name="wl_webos_imported" version="1">
+  <interface name="wl_webos_imported" version="2">
     <description summary="interface for imported content or punchthrough region">
       This interface defines operations and notifications on an imported object.
     </description>
@@ -148,7 +148,6 @@
         Requests a punch-through on the exporetd window associated with
         this import object.
       </description>
-      <arg name="context_id" type="string" summary="context id for requesting to external entity"/>
     </request>
 
     <request name="detach_punchthrough">
@@ -174,15 +173,6 @@
       <arg name="surface" type="object" interface="wl_surface"/>
     </request>
 
-    <request name="set_z_index">
-      <description summary="set the z-index for webos_imported">
-        Set the z index for webos_imported. The compositor will move the surface,
-        that is attached to webos_imported, to this layer. If no surface is attached to
-        webos_imported, nothing will happen.
-      </description>
-      <arg name="z_index" type="int"/>
-    </request>
-
     <event name="destination_region_changed">
       <description summary="destination region changed">
         Notifies the change of the destination region of associated exported window.
@@ -191,28 +181,45 @@
       <arg name="height" type="uint" summary="destination height of exported window"/>
     </event>
 
-    <event name="punchthrough_attached">
+    <request name="attach_punchthrough_with_context" since="2">
+      <description summary="attach punchthrough with context id">
+        Requests a punch-through on the exporetd window associated with
+        this import object for a given context id.
+      </description>
+      <arg name="context_id" type="string" summary="context id for requesting to external entity"/>
+    </request>
+
+    <request name="set_z_index" since="2">
+      <description summary="set the z-index for webos_imported">
+        Set the z index for webos_imported. The compositor will move the surface,
+        that is attached to webos_imported, to this layer. If no surface is attached to
+        webos_imported, nothing will happen.
+      </description>
+      <arg name="z_index" type="int"/>
+    </request>
+
+    <event name="punchthrough_attached" since="2">
       <description summary="punchthrough attached">
         Notifies that a punchthrough is attached to webos_imported.
       </description>
       <arg name="context_id" type="string"/>
     </event>
 
-    <event name="punchthrough_detached">
+    <event name="punchthrough_detached" since="2">
       <description summary="punchthrough detached">
         Notifies that a punchthrough is detached from webos_imported.
       </description>
       <arg name="context_id" type="string"/>
     </event>
 
-    <event name="surface_attached">
+    <event name="surface_attached" since="2">
       <description summary="surface attached">
         Notifies that a surface is attached to webos_imported.
       </description>
       <arg name="surface" type="object" interface="wl_surface"/>
     </event>
 
-    <event name="surface_detached">
+    <event name="surface_detached" since="2">
       <description summary="surface detached">
         Notifies that a surface is detached from webos_imported.
       </description>
