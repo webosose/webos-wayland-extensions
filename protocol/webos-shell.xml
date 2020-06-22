@@ -19,7 +19,7 @@
     SPDX-License-Identifier: Apache-2.0
   </copyright>
 
-  <interface name="wl_webos_shell" version="1">
+  <interface name="wl_webos_shell" version="2">
     <description summary="interface for webOS shell">
       This interface provides handlings on webOS shell surfaces.
     </description>
@@ -42,7 +42,7 @@
 
   </interface>
 
-  <interface name="wl_webos_shell_surface" version="1">
+  <interface name="wl_webos_shell_surface" version="2">
     <description summary="interface to handle webos shell surfaces">
       This allows the client to associate an normal surface with a
       shell surface. The shell surface provides webOS specific functionality
@@ -199,6 +199,42 @@
       </description>
       <arg name="webos_key" type="uint"/>
     </request>
+
+    <request name="set_addon" since="2">
+      <description summary="set the server-side add-on">
+        Sets the path to the server-side add-on. The compositor loads the add-on
+        on receiving this request if the add-on is identified as a valid one.
+      </description>
+      <arg name="path" type="string"/>
+    </request>
+
+    <request name="reset_addon" since="2">
+      <description summary="reset the server-side add-on">
+        Requests to unload the add-on if it is loaded.
+        If there is no add-on loaded this request is silently ignored.
+      </description>
+    </request>
+
+    <enum name="addon_status" since="2">
+      <description summary="the status of the add-on">
+        Status of the add-on for the given shell surface.
+          null: neither server-side add-on set nor loaded
+          loaded: the server-side add-on is loaded and visible
+          denied: the server-side add-on is not allowed to load
+          error: the server-side add-on is not loaded due to an error
+      </description>
+      <entry name="null" value="0"/>
+      <entry name="loaded" value="1"/>
+      <entry name="denied" value="2"/>
+      <entry name="error" value="3"/>
+    </enum>
+
+    <event name="addon_status_changed" since="2">
+      <description summary="notify the add-on status when changed">
+        Notifies when the add-on status changes.
+      </description>
+      <arg name="addon_status" type="uint"/>
+    </event>
 
   </interface>
 
