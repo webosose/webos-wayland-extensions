@@ -1,5 +1,4 @@
 Open Source Software Package:
 - name: webOSOSE-webos-wayland-extensions
-  version: 1.0.0
   source: https://github.com/webosose/webos-wayland-extensions
   license: Apache-2.0
