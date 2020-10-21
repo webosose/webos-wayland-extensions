@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <protocol name="webos_tablet">
+
   <copyright>
-    Copyright (c) 2018 LG Electronics, Inc.
+    Copyright (c) 2018-2020 LG Electronics, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -18,9 +20,14 @@
   </copyright>
 
   <interface name="wl_webos_tablet" version="1">
+    <description summary="interface for handling tablet events">
+      This interface handles tablet events that is not implemented
+      in the standard protocol.
+    </description>
 
     <enum name="pointer_type">
-      <description summary="different method to set the surface fullscreen">
+      <description summary="pointer type">
+        Describes the type of the pointer.
       </description>
       <entry name="unknown" value="0"/>
       <entry name="pen" value="1" />
@@ -29,9 +36,13 @@
     </enum>
 
     <event name="tablet_event">
+      <description summary="tablet event">
+        Represents a tablet event containing various information.
+        Some value may not be available depending on the driver used.
+      </description>
       <arg name="uniqueId" type="array" />
       <arg name="pointerType" type="int" />
-      <arg name="down" type="int" />
+      <arg name="buttons" type="int" />
       <arg name="globalX" type="fixed" />
       <arg name="globalY" type="fixed" />
       <arg name="xTilt" type="int" />
@@ -41,4 +52,5 @@
     </event>
 
   </interface>
+
 </protocol>
