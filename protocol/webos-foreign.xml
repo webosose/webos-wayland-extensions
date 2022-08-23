@@ -129,6 +129,7 @@
       <entry name="east" value="8"/>
       <entry name="center" value="16"/>
       <entry name="crop" value="32"/>
+      <entry name="fit" value="64"/>
     </enum>
 
     <request name="set_surface_alignment">
