@@ -152,6 +152,11 @@
       </description>
     </request>
 
+    <request name="set_punchthrough">
+      <description summary="set punchthrough to webos_imported"/>
+      <arg name="context_id" type="string" summary="context id for requesting to external entity"/>
+    </request>
+
     <request name="detach_punchthrough">
       <description summary="detach punchthrough">
         Requests to detatch the punch-through from the exported window
