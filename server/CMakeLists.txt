@@ -26,6 +26,7 @@ wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-input-manager.xml SOU
 wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-extension.xml SOURCES webos-extension)
 wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-foreign.xml SOURCES webos-foreign)
 wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-tablet.xml SOURCES webos-tablet)
+wayland_server_protocol(${CMAKE_SOURCE_DIR}/protocol/webos-system-ux.xml SOURCES webos-system-ux)
 
 webos_add_linker_options(ALL --no-undefined)
 
