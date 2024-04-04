@@ -23,6 +23,8 @@
       <event name="open">
         <description summary="open system ux"/>
         <arg name="app" type="string" summary="name of system ux app"/>
+        <arg name="windowType" type="string" summary="name of system ux window type"/>
+        <arg name="params" type="string" summary="parameter of system ux app"/>
       </event>
 
       <request name="opened">
@@ -48,6 +50,20 @@
       <request name="release_focus">
           <description summary="release focus"/>
           <arg name="name" type="string"/>
+      </request>
+
+      <event name="notify">
+        <description summary="notify general event to system ux app"/>
+        <arg name="action" type="string" summary="name of event action"/>
+        <arg name="windowType" type="string" summary="name of system ux window type"/>
+        <arg name="params" type="string" summary="event data of system ux app"/>
+      </event>
+
+      <request name="invoke">
+        <description summary="invoke general request of the system ux"/>
+        <arg name="action" type="string" summary="name of request action"/>
+        <arg name="windowType" type="string" summary="name of system ux window type"/>
+        <arg name="params" type="string" summary="request data of system ux app"/>
       </request>
 
     </interface>
